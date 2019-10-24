@@ -21,11 +21,11 @@ sub loop_test {
 	$start,
 	sub {
 	    my $n = shift;
-	    $_->('yay') if $n <= 0;
+	    $_->(12) if $n <= 0;
 	    $out .= "($n)";
 	    return Mojo::Promise->new(sub {$_[0]->(2)}) if $n == 11;
-	    return Mojo::Promise->new(sub {$_[1]->('buh')}) if $n == 14;
-	    die b('crap') if $n == 7;
+	    return Mojo::Promise->new(sub {$_[1]->(3)}) if $n == 14;
+	    die b('13') if $n == 7;
 	    return $n-1;
 	})
       ->tap( sub { weaken($p = $_); })
@@ -35,11 +35,11 @@ sub loop_test {
     return $out;
 }
 
-is(loop_test(5), "(5)(4)(3)(2)(1)yay", 'break');
-is(loop_test(9), "(9)(8)(7)!crap", 'die');
-is(loop_test(12), "(12)(11)(2)(1)yay", 'presolved');
-is(loop_test(15), "(15)(14)!buh", 'prejected');
-is(loop_test(-1), "yay", 'first iteration');
+is(loop_test(5), "(5)(4)(3)(2)(1)12", 'break');
+is(loop_test(9), "(9)(8)(7)!13", 'die');
+is(loop_test(12), "(12)(11)(2)(1)12", 'presolved');
+is(loop_test(15), "(15)(14)!3", 'prejected');
+is(loop_test(-1), "12", 'first iteration');
 
 sub break_test {
     my @s = split '',shift;
