@@ -4,8 +4,6 @@ package Mojo::Promise::Role::Repeat;
 
 use Mojo::Base -role;
 
-our $VERSION = '0.002';
-
 sub repeat {
     my ($self, $body) = (shift, pop);
     unless (ref $self) {
