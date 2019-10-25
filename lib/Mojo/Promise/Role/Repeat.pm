@@ -69,9 +69,7 @@ sub repeat_catch {
 	$self = $self->catch(
 	    sub {
 		$again->();
-		my @r;
-		@r = $body->(@_) for ($break);
-		return @r;
+		return $body->(@_) for ($break);
 	    }
 	)->then(
 	    sub {
