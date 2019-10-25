@@ -128,7 +128,7 @@ L<Mojo::Promise::Role::Repeat>, a role intended for L<Mojo::Promise> objects, pr
 
 =head1 METHODS
 
-In all of the following, C<$class> is a L<Mojo::Promise> class with this role applied, C<$promise> is an instance object of such a class, and C<$coderef> is a code reference similar to what you feed to L<then|Mojo::Promise/then> or L<then|Mojo::Promise/catch>.
+In all of the following, C<$class> is a L<Mojo::Promise> class with this role applied, C<$promise> is an instance object of such a class, and C<$coderef> is a code reference similar to what you feed to L<then|Mojo::Promise/then> or L<catch|Mojo::Promise/catch>.
 
 L<Mojo::Promise::Role::Repeat> supplies the following methods to its host object/class:
 
