@@ -133,7 +133,7 @@ L<Mojo::Promise::Role::Repeat>, a role intended for L<Mojo::Promise> objects, pr
 In all of the following
 
   $class   = Mojo::Promise->with_roles('+Repeat');
-  $promise = $class->new;
+  $promise = $class->new;  # or some other promise object of this class
 
 L<Mojo::Promise::Role::Repeat> supplies the following methods to the host object/class:
 
