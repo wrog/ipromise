@@ -3,7 +3,7 @@
 `Mojo::Promise::Role::Repeat` is a role that adds an iteration constuct
 to [Mojo::Promise](https://metacpan.org/pod/Mojo/Promise).
 
-[Module documentation](https://metacpan.org/pod/Mojo/Promise/Role/Repeat).
+[Module documentation](https://metacpan.org/pod/Mojo::Promise::Role::Repeat).
 
 [Installation directions](INSTALL.md).
 
