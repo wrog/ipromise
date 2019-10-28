@@ -1,4 +1,5 @@
 {{$NEXT}}
+	* simplify repeat
 
 0.005     Oct 27 2019
 	* fix repeat_catch misbehavior on instances

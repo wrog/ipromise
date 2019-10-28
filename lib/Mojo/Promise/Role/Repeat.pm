@@ -31,12 +31,9 @@ sub repeat {
 	 my $again = $again_w;
 	 $self = $self->then(
 	     sub {
-		 my @r;
-		 @r = $body->(@_) for ($break);
 		 $again->();
-		 return @r;
-	     }
-	 )->catch(
+		 return $body->(@_) for ($break);
+	     },
 	     sub {
 		 $done_p->reject(@_);
 	     }
