@@ -85,10 +85,6 @@ __END__
 
 =encoding utf8
 
-=head1 NAME
-
-Mojo::Promise::Role::Repeat - Promise looping construct with break
-
 =head1 SYNOPSIS
 
   # stupidly complicated while loop
@@ -194,16 +190,5 @@ Note that this method is B<EXPERIMENTAL> and might change without warning.
 =head1 SEE ALSO
 
 L<Mojo::Promise>, L<Mojolicious>, L<Mojolicious::Guides>, L<https://mojolicious.org>.
-
-=head1 AUTHOR
-
-Roger Crew <wrog@cpan.org>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2019 by Roger Crew.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
 
 =cut
