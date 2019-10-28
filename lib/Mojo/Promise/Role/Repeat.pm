@@ -68,15 +68,13 @@ sub repeat_catch {
     my $again_w;
     $again_w = sub {
 	my $again = $again_w;
-	$self = $self->catch(
+	$self = $self->then(
+	    sub {
+		$done_p->resolve(@_);
+	    },
 	    sub {
 		$again->();
 		return $body->(@_) for ($break);
-	    }
-	)->then(
-	    sub {
-		$done_p->resolve(@_);
-		die $self->clone;
 	    }
 	);
     };
