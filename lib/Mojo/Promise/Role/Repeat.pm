@@ -11,38 +11,39 @@ sub repeat {
     }
     elsif (@_) {
 	my @values = @_;
-	$self = $self->then( sub { (@values, @_) });
+	$self = $self->then(sub { (@values, @_) });
     }
     my $done_p = $self->clone;
-    my $break = sub {
+    my $break  = sub {
 	$done_p->resolve(@_);
 	die $self->clone;
+
 	# kills whatever handler we are in,
 	# but because the reason is a promise,
 	# does not actually reject anything,
 	# any promises dependent on that handler remain unsettled,
 	# and, because the passed promise is not referenced by anyone else,
 	# it will NEVER be settled; that whole line of execution just stops;
-        # which is not a problem here because we're skipping ahead and
+	# which is not a problem here because we're skipping ahead and
 	# resolving the promise at the "end" of the chain
     };
     my $again_w;
     $again_w = sub {
-	 my $again = $again_w;
-	 $self = $self->then(
-	     sub {
-		 $again->();
-		 return $body->(@_) for ($break);
-	     },
-	     sub {
-		 $done_p->reject(@_);
-	     }
-	 );
-     };
+	my $again = $again_w;
+	$self = $self->then(
+	    sub {
+		$again->();
+		return $body->(@_) for ($break);
+	    },
+	    sub {
+		$done_p->reject(@_);
+	    }
+	);
+    };
     $again_w->();
     Scalar::Util::weaken($again_w);
     return $done_p;
-};
+}
 
 sub repeat_catch {
     my ($self, $body) = (shift, pop);
@@ -51,14 +52,13 @@ sub repeat_catch {
     }
     elsif (@_) {
 	my @values = @_;
-	$self = $self->catch(
-	    sub { $self->clone->reject(@values, @_) }
-	);
+	$self = $self->catch(sub { $self->clone->reject(@values, @_) });
     }
     my $done_p = $self->clone;
-    my $break = sub {
+    my $break  = sub {
 	$done_p->reject(@_);
 	die $self->clone;
+
 	# kill/abandon whatever handler we are in.
 	# Same as for repeat()
     };
@@ -78,7 +78,7 @@ sub repeat_catch {
     $again_w->();
     Scalar::Util::weaken($again_w);
     return $done_p;
-};
+}
 
 1;
 __END__
